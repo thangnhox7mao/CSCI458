@@ -1,13 +1,16 @@
-<ion-content color="primary" padding>
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Login Page </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="content">
   <form #form="ngForm" (ngSubmit)="login(form)">
     <ion-grid>
-      <ion-row color="primary" justify-content-center>
+      <ion-row justify-content-center>
         <ion-col align-self-center size="12">
-          <div>
-            <h3 class="title">Login</h3>
-          </div>
           <div padding>
-            <ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">Email</ion-label>
               <ion-input
                 name="email"
                 type="email"
@@ -16,7 +19,8 @@
                 required
               ></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">Password</ion-label>
               <ion-input
                 name="password"
                 type="password"
@@ -38,10 +42,21 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <div text-center>
+        <div class="note" text-center>
           If you don't have an account, please
           <a routerLink="/register"> register</a> first!
         </div>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button
+            expand="block"
+            color="warning"
+            [routerLink]="['/password-reset']"
+          >
+            Password Reset
+          </ion-button>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </form>

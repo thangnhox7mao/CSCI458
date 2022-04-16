@@ -1,14 +1,27 @@
 ion-item {
-  --background: #3880ff;
-  --color: #fff;
+  --color: #000;
+  margin: 10px 0;
 }
 ion-button {
-  --background: #062f77;
 }
+
+ion-content {
+  --background: #fff;
+}
+
 a {
-  color: #fff;
+  color: #000;
 }
 
 .title {
   text-align: center;
+}
+
+.note {
+  margin: 20px 0;
+
+  a {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }

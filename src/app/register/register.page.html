@@ -1,13 +1,16 @@
-<ion-content color="primary">
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Register Page </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
   <form #form="ngForm" (ngSubmit)="register(form)">
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size="12">
-          <div text-center>
-            <h3 class="title">Create your account!</h3>
-          </div>
           <div padding>
-            <ion-item>
+            <!-- <ion-item>
               <ion-input
                 name="name"
                 type="text"
@@ -15,8 +18,9 @@
                 ngModel
                 required
               ></ion-input>
-            </ion-item>
-            <ion-item>
+            </ion-item> -->
+            <ion-item lines="full">
+              <ion-label position="floating">Email</ion-label>
               <ion-input
                 name="email"
                 type="email"
@@ -25,7 +29,8 @@
                 required
               ></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">Password</ion-label>
               <ion-input
                 name="password"
                 type="password"
@@ -34,7 +39,7 @@
                 required
               ></ion-input>
             </ion-item>
-            <ion-item>
+            <!-- <ion-item>
               <ion-input
                 name="confirm"
                 type="password"
@@ -42,7 +47,7 @@
                 ngModel
                 required
               ></ion-input>
-            </ion-item>
+            </ion-item> -->
           </div>
           <div padding>
             <ion-button
