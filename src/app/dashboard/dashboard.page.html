@@ -1,15 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-button type="submit" (click)="authService.signOut()" expand="block"
+      >Logout</ion-button
+    >
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button type="submit" (click)="authService.signOut()" expand="block"
-    >Logout</ion-button
-  >
   <h3>This is our real estate</h3>
-  <ion-list>
+  <!-- <ion-list>
     <ion-item *ngFor="let product of products" (click)="openProduct(product)">
       <ion-grid>
         <ion-row>
@@ -20,6 +22,37 @@
         </ion-row>
       </ion-grid>
     </ion-item>
+  </ion-list> -->
+  <ion-list>
+    <ion-item-sliding *ngFor="let product of products" #slidingItem>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <ion-label class="title">{{product.title}}</ion-label>
+              <span class="desc">{{product.description}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option
+          color="primary"
+          expandable
+          (click)="openProduct(product, slidingItem)"
+        >
+          Update
+        </ion-item-option>
+        <ion-item-option
+          color="danger"
+          expandable
+          (click)="deleteProduct(product, slidingItem)"
+        >
+          Delete
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addProduct()">

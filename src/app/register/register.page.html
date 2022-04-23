@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <form #form="ngForm" (ngSubmit)="register(form)">
+  <form [formGroup]="ionicForm" (ngSubmit)="register()" novalidate>
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size="12">
@@ -22,23 +22,46 @@
             <ion-item lines="full">
               <ion-label position="floating">Email</ion-label>
               <ion-input
-                name="email"
+                formControlName="email"
                 type="email"
                 placeholder="your@email.com"
-                ngModel
                 required
               ></ion-input>
             </ion-item>
+            <span
+              class="error ion-padding"
+              *ngIf="isSubmitted && errorControl.email.errors?.required"
+            >
+              Email is required.
+            </span>
+            <span
+              class="error ion-padding"
+              *ngIf="isSubmitted && errorControl.email.errors?.pattern"
+            >
+              Please provide valid email.
+            </span>
             <ion-item lines="full">
               <ion-label position="floating">Password</ion-label>
               <ion-input
-                name="password"
+                formControlName="password"
                 type="password"
                 placeholder="Password"
-                ngModel
                 required
               ></ion-input>
             </ion-item>
+            <!-- Error messages -->
+            <span
+              class="error ion-padding"
+              *ngIf="isSubmitted && errorControl.email.errors?.required"
+            >
+              Password is required.
+            </span>
+            <span
+              class="error ion-padding"
+              *ngIf="isSubmitted && errorControl.email.errors?.minlength"
+            >
+              Password should be min 5 chars long.
+            </span>
             <!-- <ion-item>
               <ion-input
                 name="confirm"
@@ -50,11 +73,7 @@
             </ion-item> -->
           </div>
           <div padding>
-            <ion-button
-              size="large"
-              type="submit"
-              [disabled]="form.invalid"
-              expand="block"
+            <ion-button size="large" type="submit" expand="block"
               >Register</ion-button
             >
           </div>
