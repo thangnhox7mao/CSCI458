@@ -78,7 +78,10 @@ export class LoginPage implements OnInit {
         .catch((error) => {
           this.showErrorMessage(error.message);
         });
-
+      this.ionicForm.controls.email.setValue('');
+      this.ionicForm.controls.email.setErrors(null);
+      this.ionicForm.controls.password.setValue('');
+      this.ionicForm.controls.password.setErrors(null);
       this.showLoginToast();
     }
   }

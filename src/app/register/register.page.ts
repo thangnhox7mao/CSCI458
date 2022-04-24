@@ -70,11 +70,19 @@ export class RegisterPage implements OnInit {
         .registerUser(email, password)
         .then((res) => {
           this.authService.sendVerificationMail();
+          this.ionicForm.controls.email.setValue('');
+          this.ionicForm.controls.email.setErrors(null);
+          this.ionicForm.controls.password.setValue('');
+          this.ionicForm.controls.password.setErrors(null);
           this.showRegisterToast();
           this.router.navigateByUrl('verify-email');
         })
         .catch((e) => {
           this.showErrorMessage(e.message);
+          this.ionicForm.controls.email.setValue('');
+          this.ionicForm.controls.email.setErrors(null);
+          this.ionicForm.controls.password.setValue('');
+          this.ionicForm.controls.password.setErrors(null);
         });
     }
   }

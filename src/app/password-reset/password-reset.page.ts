@@ -28,18 +28,19 @@ export class PasswordResetPage implements OnInit {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
         ],
       ],
-      password: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
 
-  resetPassword() {
+  async resetPassword() {
     this.isSubmitted = true;
     if (!this.ionicForm.valid) {
       console.log('Please provide all the required values!');
       return false;
     } else {
       const { email } = this.ionicForm.value;
-      this.authService.passwordRecover(email);
+      await this.authService.passwordRecover(email);
+      this.ionicForm.controls.email.setValue('');
+      this.ionicForm.controls.email.setErrors(null);
     }
   }
 }
