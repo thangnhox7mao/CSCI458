@@ -134,19 +134,23 @@ export class DashboardPage implements OnInit {
         {
           text: 'Add',
           handler: (res) => {
-            this.loaderService.showLoader();
-            this.productService
-              .addProduct({
-                title: res.title,
-                description: res.description,
-              })
-              .then((data) => {
-                this.loaderService.hideLoader();
-              })
-              .catch((err) => {
-                console.log(err);
-                this.loaderService.hideLoader();
-              });
+            if (res.title && res.description) {
+              this.loaderService.showLoader();
+              this.productService
+                .addProduct({
+                  title: res.title,
+                  description: res.description,
+                })
+                .then((data) => {
+                  this.loaderService.hideLoader();
+                })
+                .catch((err) => {
+                  console.log(err);
+                  this.loaderService.hideLoader();
+                });
+            } else {
+              this.showMessage('The value should not be empty');
+            }
           },
         },
       ],
